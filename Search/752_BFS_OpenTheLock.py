@@ -30,6 +30,8 @@ class Solution(object):
         # return the currentwheel number 
         output = []
 
+
+        #实现细节：dist+1 这里　在这个部分的dist都只+1 因为是搜索了所有的结果　但是始终只用了一步
         for i in range(4):
             num = int(currentwheel[i])
             for a in ((num-1), (num+1)):
