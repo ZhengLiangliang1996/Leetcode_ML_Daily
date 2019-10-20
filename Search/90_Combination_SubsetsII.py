@@ -10,8 +10,8 @@ class Solution(object):
         nums.sort()
         
         def dfs(curr, index):
-            if curr not in res:
-                res.append(curr)
+            # if curr not in res:
+            res.append(curr)
             
             for i in range(index, len(nums)):
                 # disallow same elements in the same depth

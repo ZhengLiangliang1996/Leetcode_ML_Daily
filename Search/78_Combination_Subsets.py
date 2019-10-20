@@ -20,10 +20,10 @@ class Solution(object):
 
 
 def main():
+    nums = [1, 2, 3]
 
-    input = [1, 2, 2]
     S = Solution()
-    a = S.subsets(input)
+    a = S.subsets(nums)
     print(a)
 
 if __name__ == "__main__":

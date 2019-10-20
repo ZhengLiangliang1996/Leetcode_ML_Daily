@@ -12,13 +12,13 @@ class Solution(object):
             # end condition
             if target == 0:
                 res.append(curr[:])
-                return 
+                return  
 
             for i in range(index, len(candidates)):
                 if target < candidates[i]:
                     return 
                 curr.append(candidates[i])
-                dfs(candidates, target - candidates[i], i, curr, res)
+                dfs(candidates, target - candidates[i], i+1, curr, res)
                 curr.pop()
         
         candidates.sort()
@@ -28,10 +28,11 @@ class Solution(object):
 
 def main():
 
-    candidates = [2, 3, 6, 7]
-    target = 7
+    candidates = [10,1,2,7,6,1,5]
+    target = 8
     S = Solution()
-    a = S.combinationSum(candidates, target)
+    # a = S.combinationSum(candidates, target)
+    print(str.isdigits("1"))
     print(a)
 
 if __name__ == "__main__":

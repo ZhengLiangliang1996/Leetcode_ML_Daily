@@ -15,9 +15,9 @@ class Solution(object):
                 res.append(curr[:])
                 return 
             
-            for i in range(index,n+1): # 笔记 去掉index 和不去掉index
+            for i in range(index+1,n+1): # 笔记 去掉index 和不去掉index
                 curr.append(i)
-                dfs(i+1, curr)         # 笔记 去掉+1和不去掉+1
+                dfs(i, curr)         # 笔记 去掉+1和不去掉+1
                 curr.pop()
 
                
@@ -31,7 +31,7 @@ class Solution(object):
         #         dfs(i, curr + [i])
                         
         
-        dfs(1, [])
+        dfs(0, [])
         
         return res
 

@@ -30,7 +30,6 @@ class Solution(object):
 
 
 def main():
-
     candidates = [10,1,2,7,6,1,5]
     target = 8
     S = Solution()
