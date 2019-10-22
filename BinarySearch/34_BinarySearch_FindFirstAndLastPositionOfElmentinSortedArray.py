@@ -11,41 +11,26 @@ class Solution(object):
         res = []
         # find first position 
         # 
-        while(l < r):
-            mid = l + ((r - l) >> 1) 
-            print(l)
-            if nums[mid] >= target:
-                r = mid
-            else:
+        while l <= r:
+            mid = l + ((r - l) >> 1)
+            if(nums[mid] < target):
                 l = mid + 1
-            
-        if l == len(nums) or nums[l] != target:
-            res.append(-1)
-        else: 
-            res.append(l)
-        
-        l = 0
+            else:
+                r = mid - 1
+        ansLow = l
+
+        l = 0 
         r = len(nums) - 1
-        print('-----')
-        
-        while(l < r):
-            mid = l + ((r - l) >> 1) 
-            print(l)
-            if nums[mid] > target:
-                r = mid
-            else:
+
+        while l <= r:
+            mid = l + ((r - l) >> 1)
+            if(nums[mid] <= target):
                 l = mid + 1
-        l -= 1
-        print('------')
-            
-        if l < 0 or nums[l] != target:
-            res.append(-1)
-        else:
-            res.append(l)
-        
-        return res
+            else:
+                r = mid - 1
+        ansHigh = r
 
-
+        return [ansLow, ansHigh] if ansLow <= ansHigh else [-1, -1]
 def main():
 
     nums = [5, 7, 7, 8, 8, 10]
