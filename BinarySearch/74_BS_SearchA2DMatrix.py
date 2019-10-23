@@ -10,7 +10,6 @@ class Solution(object):
         if not matrix:
             return False
         
-        rows = len(matrix)
         cols = len(matrix[0])
         
         l = 0
@@ -21,8 +20,8 @@ class Solution(object):
             print(mid)
 
             # 
-            mid_y = mid % cols
-            mid_x = mid // cols 
+            mid_y = mid % cols  # 重点！ 
+            mid_x = mid // cols # 重点！
             print(mid_x, mid_y)
             if matrix[mid_x][mid_y] == target:
                 return True
@@ -33,7 +32,8 @@ class Solution(object):
         
         return False
     
-        
+
+from bisect import bisect,bisect_right,bisect_left
 
 def main():
 
@@ -43,8 +43,11 @@ def main():
         [23, 30, 34, 50]
         ]
     S = Solution()
-    a = S.searchMatrix(matrix, 13)
-    print(a)
+    #a = S.searchMatrix(matrix, 13)
+    # bisect 测试 
+    data = [2, 2, 3, 4, 9, 7]
+    print(bisect(data, 2))
+    # print(a)
     # print(a)
 
 if __name__ == "__main__":
