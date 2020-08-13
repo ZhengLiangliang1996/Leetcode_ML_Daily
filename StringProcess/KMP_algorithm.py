@@ -10,7 +10,7 @@ def kmp(mom_string, son_string):
     if s == len(son_string):
         return m - s
     else:
-        return -1  
+        return -1
 
 def getNext(p):
     nex = [0] * len(p)
@@ -25,7 +25,7 @@ def getNext(p):
             nex[i] = j
         else:
             j = nex[j]
-    
+
     return nex
 
 s = 'ababababca'
