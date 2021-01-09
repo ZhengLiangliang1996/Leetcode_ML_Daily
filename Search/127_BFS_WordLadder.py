@@ -26,7 +26,7 @@ class Solution(object):
             if currWord == endWord:
                 return dist
 
-            # search stage 
+            # search stage
             for i in range(len(beginWord)):
                 # currAlphabet
                 # a = currWord[i]
@@ -37,7 +37,37 @@ class Solution(object):
                         q.append((x, dist+1))
                         history.add(x)
 
-        return 0  
+        return 0
+
+    def LadderLength_v1(self, beginWord, endWord, wordList):
+        visited = set(wordList)
+        q = collections.deque()
+        q.append(beginWord)
+        if endWord not in wordList:
+            return 0
+
+        step = 0
+
+        while q:
+
+            step = step + 1
+            qSize = len(q)
+
+            for k in range(qSize):
+                node = q.popleft()
+                for i in range(len(node)):
+                    for j in "abcdefghijklmnopqrstuvwxyz":
+                        word = node[:i] + j + node[i+1:]
+                        if word == endWord and word in visited:
+                            return step+1
+
+                        if word not in visited:
+                            continue
+
+                        if word != node and word in visited:
+                            visited.remove(word)
+                            q.append(word)
+        return 0
 
 def main():
     S = Solution()
@@ -46,8 +76,8 @@ def main():
     endWord = "cog"
     wordList = ["hot","dot","dog","lot","log","cog"]
     a = S.ladderLength(beginWord,endWord,wordList)
-    
+
     print(a)
-    
+
 if __name__ == "__main__":
     main()
