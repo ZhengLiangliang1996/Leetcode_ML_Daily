@@ -36,7 +36,7 @@ def right_bound(nums, target):
 
 def main():
     nums = [5,7,7,8,8,10]
-    print("The left bound is", left_bound(nums, 8))
+    print("The left bound is", left_bound(nums, 6))
     print("The right bound is", right_bound(nums, 8))
 
 
