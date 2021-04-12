@@ -1,29 +1,29 @@
-# Review 
-
+# Review
 class Solution(object):
-	def permute(self, nums):
-		res = []
-		# rongcuo 
-		if len(nums) == 0:
-			return []
-		
-		used = [0 for i in range(len(nums))]
+    def permute(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        res = []
+        if not nums:
+            return res
+        used = [0] * len(nums)
 
-		def dfs(curr, index):
-			if len(curr) == len(nums):
-				res.append(curr)
-				return 
-			for i in range(index, len(nums)):
-				# if used[i]:
-					# continue
-				# if not used[i]:
-					# used[i] = 1
-				dfs(curr + [nums[i]], i+1)
-					# used[i] = 0				
-		
-		dfs([], 0)
-		return res
+        def backtrack(path):
+            if len(path) == len(nums):
+                res.append(path)
+                return
 
+            for i in range(len(nums)):
+                if used[i]: continue
+
+                used[i] = 1
+                backtrack(path+[nums[i]])
+                used[i] = 0
+
+        backtrack([])
+        return res
 
 def main():
 
