@@ -29,8 +29,6 @@ class Solution(object):
     def findNeighbour(self, currentwheel, dist, dead):
         # return the currentwheel number 
         output = []
-
-
         #实现细节：dist+1 这里　在这个部分的dist都只+1 因为是搜索了所有的结果　但是始终只用了一步
         for i in range(4):
             num = int(currentwheel[i])
@@ -44,7 +42,43 @@ class Solution(object):
         return output
 
 
+class Solution(object):
+    def openLock(self, deadends, target):
+        """
+        :type deadends: List[str]
+        :type target: str
+        :rtype: int
+        """
+        # BFS
+        dead = set(deadends)
+        # Staring wheel and steps
+        q = collections.deque()
+        q.append('0000')
 
+        if '0000' in dead:
+            return -1
+        step = 0
+        if target == '0000':
+            return 0
+        while q:
+            qSize = len(q)
+            for i in range(qSize):
+                whl= q.popleft()
+
+                # whithin this wheel, do a search in different 4 * 2(up and down) search
+                for i in range(4):
+                    whl_num = int(whl[i])
+                    for a in (whl_num+1, whl_num-1):
+                        whl_change = whl[:i] + str(a%10) + whl[i+1:]
+                        if whl_change == target:
+                            return step + 1
+                        if whl_change not in dead:
+                            dead.add(whl_change)
+                            q.append(whl_change)
+            step += 1
+
+
+        return -1
 
 def main():
     S = Solution()
