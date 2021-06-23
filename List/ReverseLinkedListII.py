@@ -48,4 +48,31 @@ class Solution(object):
         
         
                 
-            
+            # Here is an exmple
+        # 1 --> 2 --> 3 --> 4 --> 5
+        #       
+        # Before first while-loop
+        #      0 --> 1 --> 2 --> 3 --> 4 --> 5
+        #      prev  curr
+        # After first while-loop 
+        #      0 --> 1 --> 2 --> 3 --> 4 --> 5 
+        #            prev curr 
+        #  last_unswapped, first_swapped = prev, curr
+        # The following is the details for 2nd while-loop
+        # diff=2 #   1 <-- 2 --> 3 --> 4 --> 5
+        #                 prev  curr
+        # diff=1 #   1 <-- 2 <-- 3 --> 4 --> 5
+        #                       prev  curr
+        # diff=0 #   1 <-- 2 <-- 3 <-- 4 --> 5
+        #                             prev  curr
+        # last_unswapped.next = prev
+        # first_swapped.next  = curr
+        # After impletenting the above two lines, we get:
+        #         first_swapped.next = curr
+        #          __________________  
+        #          ^                 |      
+        #          |                 V 
+        # 1        2 <-- 3 <-- 4     5
+        # |                    ^
+        # V ___________________| 
+        # last_unswapped.next=prev    
