@@ -10,6 +10,11 @@
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
 class Solution(object):
     def reverseBetween(self, head, left, right):
         """
@@ -33,17 +38,16 @@ class Solution(object):
             p = p.next
             
         c = p.next 
-        n = c.next 
-
-        for i in range(gap):
-            tmp = n.next
-            n.next = c
-            c = n
-            n = tmp
+        #n = c.next 
+        last_unswapped, first_swapped = p, c
+        for i in range(gap+1):
+            n = c.next 
+            c.next = p
+            p = c
+            c = n 
         
-        p.next.next = n
-        p.next = c
-        
+        last_unswapped.next = p
+        first_swapped.next = c 
         return dummy.next 
         
         
