@@ -18,7 +18,6 @@ class Solution(object):
         
         l = self.lowestCommonAncestor(root.left, p, q)
         r = self.lowestCommonAncestor(root.right, p, q)
-        
         if l != None and r != None:
             return root
         
