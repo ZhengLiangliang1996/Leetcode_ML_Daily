@@ -19,3 +19,26 @@ class Solution(object):
                        findMin(nums, mid, r))
         
         return findMin(nums, 0, len(nums) - 1)
+
+
+class Solution(object):
+    def findMin(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        l = 0
+        r = len(nums) - 1
+        
+        while l < r:
+            while l < r and nums[r] == nums[l]:
+                l += 1
+            
+            mid = l + ((r - l) >> 1 )
+            if nums[mid] > nums[r]:
+                l = mid + 1
+            else:
+                r = mid 
+        
+        return nums[l]
+            
