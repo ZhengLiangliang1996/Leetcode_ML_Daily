@@ -41,6 +41,13 @@ class Solution(object):
                 res.append(path)
                 
             for i in range(stt, len(c)):
+                # First Tree on the left 
+                # [1] - [1,1], [1,2], [1,5], 
+                #        [1,2,5]
+                
+                # Second sub Tree, still 1 
+                # [1] - [1,2] [1,5]
+                #        [1, 2, 5]  duplicates
                 if i > stt and c[i] == c[i-1]:
                     continue 
                 if c[i] > t:
@@ -51,6 +58,8 @@ class Solution(object):
         dfs([], t, 0)
         
         return res 
+        
+         
         
          
 def main():
