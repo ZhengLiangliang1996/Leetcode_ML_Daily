@@ -24,8 +24,29 @@ class Solution(object):
         candidates.sort()
         dfs(candidates, target, 0, [], res)
         return res
+# 2021-10-18
+class Solution(object):
+    def combinationSum(self, c, t):
+        """
+        :type candidates: List[int]
+        :type target: int
+        :rtype: List[List[int]]
+        """
+        res = []
 
-
+        def dfs(path, t, stt):
+            if t == 0:
+                res.append(path)
+            
+            for i in range(stt, len(c)):
+                if c[i] > t:
+                    continue 
+                
+                dfs(path + [c[i]], t - c[i], i)
+        c.sort()
+        dfs([], t, 0)
+        return res 
+    
 def main():
 
     candidates = [10,1,2,7,6,1,5]
