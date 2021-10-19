@@ -34,8 +34,25 @@ class Solution(object):
         dfs(0, [])
         
         return res
-
-
+# 2021-10-20
+class Solution(object):
+    def combine(self, n, k):
+        """
+        :type n: int
+        :type k: int
+        :rtype: List[List[int]]
+        """
+        res = []
+        
+        def backtrack(path, k, stt):
+            if k == 0:
+                res.append(path)
+                
+            for i in range(stt, n+1):
+                backtrack(path + [i], k-1, i+1)
+            
+        backtrack([], k, 1)
+        return res
 def main():
 
     n = 4

@@ -29,4 +29,25 @@ class Solution(object):
         dfs(candidates, n, 0, [])
         
         return res
+
+class Solution(object):
+    def combinationSum3(self, k, n):
+        """
+        :type k: int
+        :type n: int
+        :rtype: List[List[int]]
+        """
+        res = []
+        def backtrack(path, t, stt):
+            if t == 0 and len(path) == k:
+                res.append(path)
+                
+            for i in range(stt, 10):
+                if i > t:
+                    continue 
+                    
+                backtrack(path + [i], t - i, i + 1)
+        
+        backtrack([], n, 1)
+        return res 
                 

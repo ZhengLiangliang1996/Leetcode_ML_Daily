@@ -25,3 +25,27 @@ In this problem we need to generate all possible letter case permutations, and l
         dfs('', 0)
 
         return res
+#2021-10-20
+class Solution(object):
+    def letterCasePermutation(self, s):
+        """
+        :type s: str
+        :rtype: List[str]
+        """
+        res = [] 
+        def backtrack(path, stt):
+            if len(path) == len(s):
+                res.append(path)
+                
+            for i in range(stt, len(s)):
+                if s[i].isalpha():
+                    if s[i].isupper():
+                        backtrack(path + s[i].lower(), i+1)
+                    else:
+                        backtrack(path + s[i].upper(), i+1)
+                        
+                backtrack(path + s[i], i+1)
+        backtrack('', 0)
+        
+        return res 
+            

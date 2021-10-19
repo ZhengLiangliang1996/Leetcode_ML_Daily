@@ -18,7 +18,21 @@ class Solution(object):
         
         return res
 
-
+class Solution(object):
+    def subsets(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        res = []
+        def backtrack(path, stt):
+            res.append(path)
+            
+            for i in range(stt, len(nums)):
+                backtrack(path + [nums[i]], i+1)
+            
+        backtrack([], 0)
+        return res 
 def main():
     nums = [1, 2, 3]
 
