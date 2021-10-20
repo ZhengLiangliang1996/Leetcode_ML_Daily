@@ -56,6 +56,47 @@ class Solution(object):
 
 
 
+class Solution(object):
+    def removeInvalidParentheses(self, s):
+        """
+        :type s: str
+        :rtype: List[str]
+        """
+        res = []
+        def valid(s):
+            l = 0
+            r = 0
+            for i in s:
+                if i == "(":
+                    l += 1
+                elif l != 0 and i == ")":
+                    l -= 1
+                elif l == 0 and i == ")":
+                    r += 1
+        
+            return l, r
+            
+        def backtrack(s, l, r, stt):
+            if l == 0 and r == 0:
+                l1, r1 = valid(s)
+                if l1 == 0 and r1 == 0:
+                    res.append(s)
+                    return
+            
+            for i in range(stt, len(s)):
+                if i > stt and s[i] == s[i - 1]:
+                    continue
+                    
+                if s[i] == ")" and r > 0:
+                    path = s[:i] + s[i+1:]
+                    backtrack(path, l, r-1, i)
+                if s[i] == "(" and l > 0:
+                    path = s[:i] + s[i+1:]
+                    backtrack(path, l-1, r, i)
+
+        l, r = valid(s)
+        backtrack(s, l, r, 0 )
+        return res
 
 def main():
     S = Solution();
