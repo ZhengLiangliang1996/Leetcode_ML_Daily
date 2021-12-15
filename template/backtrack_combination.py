@@ -9,6 +9,52 @@ from __future__ import print_function
 import sys
 import argparse
 class Solution(object):
+    def combinationSum2(self, c, t):
+        """
+        :type candidates: List[int]
+        :type target: int
+        :rtype: List[List[int]]
+        """
+        res = []
+        def dfs(path, target, stt):
+            if target == 0:
+                res.append(path)
+                return
+
+            for i in range(stt, len(c)):
+                # prune
+                if c[i] > target: return
+                if i > stt and c[i] == c[i-1]:
+                    continue
+                dfs(path + [c[i]], target-c[i], i+1)
+
+        c.sort()
+        dfs([], t, 0)
+        return res
+
+
+    def combinationSum(self, c, target):
+        """
+        :type candidates: List[int]
+        :type target: int
+        :rtype: List[List[int]]
+        """
+        res = []
+        def dfs(path, target, stt):
+            if target == 0:
+                res.append(path)
+                return
+    
+            # choice 
+            for i in range(stt, len(c)):
+                # prune 
+                if c[i] > target: return 
+                dfs(path+[c[i]], target-c[i], i)
+        
+        c.sort()
+        dfs([], target, 0)
+        return res 
+
     def letterCombinations(self, digits):
         """
         :type digits: str
