@@ -54,7 +54,50 @@ class Solution(object):
         dfs(s, 0, l, r, res)
         return res
 
-
+class Solution(object):
+    def removeInvalidParentheses(self, s):
+        """
+        :type s: str
+        :rtype: List[str]
+        """
+        def valid(s):
+            ''' See if string contains valid parentheses 
+            '''
+            l,r = 0, 0
+            for sub in s:
+                if sub == "(":
+                    l += 1
+                elif sub == ')' and l == 0:
+                    r += 1
+                elif sub == ')' and l != 0:
+                    l -= 1
+            
+            return l, r
+        res = []
+        
+        def dfs(s, l, r, start):
+            if l == 0 and r == 0:
+                l1, r1 = valid(s)
+                if l1 == 0 and r1 == 0:
+                    res.append(s)
+                    return 
+                
+            for i in range(start, len(s)):
+                if i > start and s[i] == s[i-1]: continue
+                
+                if s[i] == '(' and l > 0:
+                    dfs(s[:i] + s[i+1:], l-1, r, i)
+                if s[i] == ')' and r > 0:
+                    dfs(s[:i] + s[i+1:], l, r-1, i)
+                    
+                
+            
+        l, r = valid(s)
+        dfs(s, l, r, 0)
+        return res
+            
+            
+            
 
 class Solution(object):
     def removeInvalidParentheses(self, s):
