@@ -27,4 +27,14 @@ class Solution(object):
         root.right = self.sortedArrayToBST(nums[mid+1:])
         
         return root
+
+        # transform the index 
+        def buildBST(l, r):
+            if l > r: return None 
+            m = l + (r - l) // 2
+            root = TreeNode(nums[m])
+            root.left = buildBST(l, m-1)
+            root.right = buildBST(m+1, r)
+            return root 
         
+        return buildBST(0, len(nums)-1)       
