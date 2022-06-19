@@ -2,12 +2,9 @@
 # -*- coding: utf-8 -*-
 # vim:fenc=utf-8
 #
-# Copyright © 2021 liangliang <liangliang@Liangliangs-MacBook-Air.local>
+# Copyright © 2022 liangliang <liangliang@Liangliangs-MacBook-Air.local>
 #
 # Distributed under terms of the MIT license.
-# Python Program for union-find algorithm to detect cycle in a undirected graph
-# we have one egde for any two vertex i.e 1-2 is either 1-2 or 2-1 but not both
-
 class UnionFindSet:
     def __init__(self, n):
         self._parents = [i for i in range(n + 1)]
@@ -15,7 +12,6 @@ class UnionFindSet:
     
     def find(self, u):
         while u != self._parents[u]:
-            # path compression
             self._parents[u] = self._parents[self._parents[u]]
             u = self._parents[u]
         return u
@@ -33,3 +29,12 @@ class UnionFindSet:
             self._ranks[pu] += 1
         
         return True
+class Solution:
+    def makeConnected(self, n: int, c: List[List[int]]) -> int:
+        if len(c) < n-1: return -1
+        uf = UnionFindSet(n)
+        res = n
+        for u,v in c:
+            if uf.union(u, v): res -= 1
+        
+        return res - 1
