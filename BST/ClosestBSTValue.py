@@ -28,15 +28,15 @@ class Solution():
         currentNode = root
 
         while currentNode:
-            if abs(root.val - target) < abs(closest - target):
-                closest = root.val 
-            if root.val == target:
-                return root.val
+            if abs(currentNode.val - target) < abs(closest - target):
+                closest = currentNode.val 
+            if currentNode.val == target:
+                return currentNode.val
             elif root.val > target:
                 currentNode = currentNode.left
             else:
                 currentNode = currentNode.right
-        return cloest
+        return closest
 
 def main():
     # TEST CASE 
@@ -51,7 +51,7 @@ def main():
     s = Solution()
     c1 = s.cloestValueBST_recursion(r, 18, float('inf'))
     c2 = s.cloestValueBST_iteration(r, 18, float('inf'))
-    print(c)
+    print(c1, c2)
 
 if __name__ == '__main__':
     main()
