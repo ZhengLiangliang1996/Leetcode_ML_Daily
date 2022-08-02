@@ -11,7 +11,7 @@
 #         self.val = x
 #         self.left = None
 #         self.right = None
-
+# O(N), O(N)
 class Solution(object):
     def invertTree(self, root):
         """
@@ -40,4 +40,19 @@ class Solution(object):
             stack.append(node.right)
             stack.append(node.left)
         return root
+
+# Recursion Time: O(N), Space: O(depth of tree)
+class Solution1(object):
+    def invertTree(self, root):
+        """
+        :type root: TreeNode
+        :rtype: TreeNode
+        """
+        if not root:
+            return
+        root.left, root.right = root.right, root.left
+        self.invertTree(root.left)
+        self.invertTree(root.right)
+        return root
+
  
