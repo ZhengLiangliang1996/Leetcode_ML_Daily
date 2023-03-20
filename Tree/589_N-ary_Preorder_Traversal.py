@@ -1,43 +1,25 @@
-#! /usr/bin/env python
-"""
-Author: LiangLiang ZHENG
-Date:
-File Description
-"""
-
-from __future__ import print_function
-import sys
-import argparse
 """
 # Definition for a Node.
-class Node(object):
+class Node:
     def __init__(self, val=None, children=None):
         self.val = val
         self.children = children
 """
 
-class Solution(object):
-    def preorder(self, root):
-        """
-        :type root: Node
-        :rtype: List[int]
-        """
+class Solution:
+    def preorder(self, root: 'Node') -> List[int]:
         res = []
+        stack = collections.deque()
 
-        def traverse(root):
-            if not root:
-                return
+        stack.append(root)
 
-            res.append(root.val)
-            for child in root.children:
-                traverse(child)
-        traverse(root)
-        print(res)
-        return res
-def main():
-    pass
+        while stack:
+            node = stack.pop()
+            res.append(node.val)
 
+            stack.extend(node.children[::-1])
+        
+        return res 
+        
 
-if __name__ == "__main__":
-    main()
-
+        
