@@ -1,31 +1,17 @@
-#! /usr/bin/env python3
-# -*- coding: utf-8 -*-
-# vim:fenc=utf-8
-#
-# Copyright © 2021 liangliang <liangliang@Liangliangs-MacBook-Air.local>
-#
-# Distributed under terms of the MIT license.
 # The isBadVersion API is already defined for you.
-# @param version, an integer
-# @return a bool
-# def isBadVersion(version):
+# def isBadVersion(version: int) -> bool:
 
-class Solution(object):
-    def firstBadVersion(self, n):
-        """
-        :type n: int
-        :rtype: int
-        """
-        # left boundry 
-        l = 1 
-        r = n + 1
+class Solution:
+    def firstBadVersion(self, n: int) -> int:
+        l, r = 1, n+1
+
         while l < r:
-            mid = l + ((r - l ) >> 1)
-            
-            if isBadVersion(mid):
+            mid = l + ((r - l) >> 1)
+            if isBadVersion(mid) == True:
                 r = mid 
-            else:
-                l = mid + 1
-        
-        return l 
+            elif isBadVersion(mid) == False:
+                l = mid + 1 
+            elif isBadVersion(mid) == True:
+                r = mid 
             
+        return l
