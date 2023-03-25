@@ -17,3 +17,14 @@ class Solution(object):
             return df[n]
         
         return dpStairs(n)
+
+class Solution:
+    def climbStairs(self, n: int) -> int:
+        if n == 1: return 1 
+        fn_1, fn_2 = 1, 1
+        for i in range(n-1):
+            temp = fn_2
+            fn_2 = fn_1 + fn_2
+            fn_1 = temp
+        
+        return fn_2
