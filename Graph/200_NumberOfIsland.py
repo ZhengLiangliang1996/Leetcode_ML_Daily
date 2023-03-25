@@ -1,35 +1,22 @@
-class Solution(object):
-    def numIslands(self, grid):
-        """
-        :type grid: List[List[str]]
-        :rtype: int
-        """
-        if not grid:
-            return 0
-        m = len(grid)
-        n = len(grid[0])
-        
-        
-        
+class Solution:
+    def numIslands(self, grid: List[List[str]]) -> int:
         res = 0
+        m, n = len(grid), len(grid[0])
+        dirs = [0, -1, 0, 1, 0]
+
+        def dfs(x,y):
+            if x < 0 or x >= m or  y < 0 or y >= n or grid[x][y] != "1":
+                return 
+            else:
+                grid[x][y] = "2"
+                for i in range(4):
+                    new_x = x + dirs[i]
+                    new_y = y + dirs[i+1]
+                    dfs(new_x, new_y)
+
         for i in range(m):
             for j in range(n):
-                if grid[i][j] == '1':
-                    res+= 1
-                    self.dfs(i, j, m, n, grid)
-        
-        return res
-        
-    def dfs(self, x, y, m, n, grid):
-        # end condition
-        if x >= m or x < 0 or y >=n or y < 0 or grid[x][y] == '0':
-            return 
-        
-        grid[x][y] = '0'
-        self.dfs(x+1, y, m, n, grid)
-        self.dfs(x-1, y, m, n, grid)
-        self.dfs(x, y+1, m, n, grid)
-        self.dfs(x, y-1, m, n, grid)
-        
-        
-        
+                if grid[i][j] == "1":
+                    dfs(i, j) 
+                    res += 1        
+        return res 
