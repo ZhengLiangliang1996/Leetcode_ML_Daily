@@ -17,3 +17,17 @@ class Solution(object):
             dp2, dp1 = dp1, cost[i] + min(dp1, dp2)
         
         return min(dp1, dp2)
+
+
+class Solution:
+    def minCostClimbingStairs(self, cost: List[int]) -> int:
+        # dp[i] minimum coset of reach to step i
+        if not cost: return 0
+        if len(cost) <= 2: return min(cost)
+        cost.append(0)
+        dp = [0 for _ in range(len(cost))]
+        dp[0], dp[1] = cost[0], cost[1]
+        for i in range(2, len(cost)):
+            dp[i] = min(dp[i-1], dp[i-2]) + cost[i]
+
+        return dp[-1]
